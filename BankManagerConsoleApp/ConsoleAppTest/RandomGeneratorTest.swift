@@ -18,12 +18,8 @@ class RandomGeneratorTest: XCTestCase {
         sut = nil
     }
 
-    func test_generateRandomCustomer_호출시_totalCustomer가_10이상_30이하로_setting_되는지_1000회_test() {
-        for _ in 1...1000 {
-//            DispatchQueue.global().async {
-                self.sut.generateRandomCustomer()
-                XCTAssertTrue(10 <= self.sut.totalCustomer && self.sut.totalCustomer <= 30)
-//            }
-        }
+    func test_generateRandomCustomer_호출시_비어있지_않은_Customer_배열을_반환하는지() {
+        let result = sut.generateRandomCustomer()
+        XCTAssert(!result.isEmpty)
     }
 }
