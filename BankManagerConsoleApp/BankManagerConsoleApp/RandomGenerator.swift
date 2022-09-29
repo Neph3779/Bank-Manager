@@ -21,8 +21,8 @@ struct RandomGenerator: RandomGeneratable {
         
         for customerNumber in 1...totalCustomer {
             let ticketNumber = customerNumber
-            let priority = Customer.Priority.random
-            let task = Customer.Task.random
+            let priority = Customer.Priority.allCases.randomElement()!
+            let task = Customer.Task.allCases.randomElement()!
             let randomCustomer  = Customer(ticketNumber: ticketNumber, priority: priority, task: task)
             customers.append(randomCustomer)
         }

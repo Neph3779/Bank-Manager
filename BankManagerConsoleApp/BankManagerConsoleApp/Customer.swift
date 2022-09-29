@@ -29,14 +29,6 @@ extension Customer {
                 return "일반"
             }
         }
-        
-        static var random: Priority {
-            if let randomPriority = Priority.allCases.randomElement() {
-                return randomPriority
-            } else {
-                return Priority.VIP
-            }
-        }
     }
     
     enum Task: CaseIterable {
@@ -49,14 +41,6 @@ extension Customer {
                 return "대출"
             case .deposit:
                 return "예금"
-            }
-        }
-    
-        static var random: Task {
-            if let randomTask = Task.allCases.randomElement() {
-                return randomTask
-            } else {
-                return Task.loan
             }
         }
     }
