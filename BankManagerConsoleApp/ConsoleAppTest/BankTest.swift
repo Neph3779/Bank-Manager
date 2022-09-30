@@ -19,17 +19,9 @@ class BankTest: XCTestCase {
     }
     
     func test_openBank_호출시_openTime이_초기화되는지() {
-        XCTAssertTrue(sut.openTime == nil)
+        // when
         sut.openBank()
+        // then
         XCTAssertTrue(sut.openTime != nil)
-    }
-    
-    func test_closeBank_호출시_closeTime이_초기화되는지() {
-        sut.openBank()
-        do {
-            try sut.closeBank(totalCustomerNumber: 1)
-        } catch {
-            XCTFail("closeTime is nil")
-        }
     }
 }
