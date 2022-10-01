@@ -14,19 +14,15 @@ protocol ConsoleViewControllable {
     func shouldContinue() -> Result<Bool, BankManagerError>
 }
 
-struct ConsoleViewController: ConsoleViewControllable {
+class ConsoleViewController: ConsoleViewControllable {
     private(set) var userInput = ""
+    private let startMenu = "1 : 은행개점\n2 : 종료\n입력 :"
     
     func showStartMenu() {
-        print(
- """
- 1 : 은행개점
- 2 : 종료
- 입력 : 
- """, terminator: "")
+        print(startMenu)
     }
     
-    mutating func getUserInput() {
+    func getUserInput() {
         guard let input = readLine() else {
             return
         }
