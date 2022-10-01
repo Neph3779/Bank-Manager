@@ -7,31 +7,21 @@
 
 import Foundation
 
-protocol ConsoleViewControllable {
-    var userInput: String { get }
-    mutating func getUserInput()
-    func showStartMenu()
-    func shouldContinue() -> Result<Bool, BankManagerError>
-}
-
-class ConsoleViewController: ConsoleViewControllable {
-    private(set) var userInput = ""
-    private let startMenu = "1 : 은행개점\n2 : 종료\n입력 :"
+class ConsoleViewController {
+    var userInput = ""
+    private let startMenu = "1 : 은행개점\n2 : 종료\n입력 : "
     
     func showStartMenu() {
-        print(startMenu)
+        print(startMenu, terminator: "")
     }
     
-    func getUserInput() {
-        guard let input = readLine() else {
-            return
-        }
-        userInput = input
+    func getUserInput() -> String {
+        guard let input = readLine() else { return "" }
+        return input
     }
     
-    func shouldContinue() -> Result<Bool, BankManagerError> {
-        
-        switch userInput {
+    func shouldContinue(input: String) -> Result<Bool, BankManagerError> {
+        switch input {
         case "1":
             return .success(true)
         case "2":

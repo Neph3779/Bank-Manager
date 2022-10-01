@@ -8,13 +8,13 @@ import Foundation
 
 struct BankManager {
     private var bank: Bankable
-    private var consoleViewController: ConsoleViewControllable
+    private var consoleViewController: ConsoleViewController
     private var randomGenerator: RandomGeneratable
     private let bankOperationQueue = OperationQueue()
     private var randomCustomers: [Customer]?
     private var totalCustomerNumber: Int = 0
     
-    init(bank: Bankable, consoleViewer: ConsoleViewControllable, randomGenerator: RandomGeneratable) {
+    init(bank: Bankable, consoleViewer: ConsoleViewController, randomGenerator: RandomGeneratable) {
         self.bank = bank
         self.consoleViewController = consoleViewer
         self.randomGenerator = randomGenerator
@@ -58,11 +58,9 @@ struct BankManager {
         
         repeat {
             consoleViewController.showStartMenu()
-            consoleViewController.getUserInput()
-            result = consoleViewController.shouldContinue()
-            do {
-                shouldContinue = try result.get()
-            } catch {
+            let input = consoleViewController.getUserInput()
+            result = consoleViewController.shouldContinue(input: input)
+            if case let .failure(error) = result {
                 print(error)
             }
         } while result == .failure(.invalidUserInput)
