@@ -62,6 +62,11 @@ struct BankManager {
             result = consoleViewController.shouldContinue(input: input)
             if case let .failure(error) = result {
                 print(error)
+                shouldContinue = false
+            }
+
+            if case let .success(shouldContinueResult) = result {
+                shouldContinue = shouldContinueResult
             }
         } while result == .failure(.invalidUserInput)
         
