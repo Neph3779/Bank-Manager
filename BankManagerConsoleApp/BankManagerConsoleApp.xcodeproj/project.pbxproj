@@ -19,7 +19,6 @@
 		1CB01E8626400CD2003FEF29 /* RandomGeneratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB01E8526400CD2003FEF29 /* RandomGeneratorTest.swift */; };
 		1CB01E942640D709003FEF29 /* BankTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB01E932640D709003FEF29 /* BankTest.swift */; };
 		1CB01E9A264119B1003FEF29 /* ConsoleViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB01E99264119B1003FEF29 /* ConsoleViewControllerTest.swift */; };
-		1CB01EA426412059003FEF29 /* BankMangerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB01EA326412059003FEF29 /* BankMangerTest.swift */; };
 		1CDF895A263AD05B008CD062 /* RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDF8959263AD05B008CD062 /* RandomGenerator.swift */; };
 		1CDF895E263AD06F008CD062 /* HandleCustomerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDF895D263AD06F008CD062 /* HandleCustomerOperation.swift */; };
 		1CDF8961263AECAB008CD062 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4581D5263A7B5B00EA6A83 /* Customer.swift */; };
@@ -53,7 +52,6 @@
 		1CB01E8526400CD2003FEF29 /* RandomGeneratorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGeneratorTest.swift; sourceTree = "<group>"; };
 		1CB01E932640D709003FEF29 /* BankTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankTest.swift; sourceTree = "<group>"; };
 		1CB01E99264119B1003FEF29 /* ConsoleViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleViewControllerTest.swift; sourceTree = "<group>"; };
-		1CB01EA326412059003FEF29 /* BankMangerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankMangerTest.swift; sourceTree = "<group>"; };
 		1CDF8959263AD05B008CD062 /* RandomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
 		1CDF895D263AD06F008CD062 /* HandleCustomerOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleCustomerOperation.swift; sourceTree = "<group>"; };
 		27574928C2F5BBF11D2B27CC /* Pods_BankManagerConsoleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BankManagerConsoleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +83,6 @@
 		1C4581A92638563C00EA6A83 /* ConsoleAppTest */ = {
 			isa = PBXGroup;
 			children = (
-				1CB01EA326412059003FEF29 /* BankMangerTest.swift */,
 				1CB01E99264119B1003FEF29 /* ConsoleViewControllerTest.swift */,
 				1CB01E932640D709003FEF29 /* BankTest.swift */,
 				1CB01E8526400CD2003FEF29 /* RandomGeneratorTest.swift */,
@@ -279,7 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CB01E8626400CD2003FEF29 /* RandomGeneratorTest.swift in Sources */,
-				1CB01EA426412059003FEF29 /* BankMangerTest.swift in Sources */,
 				1CDF8961263AECAB008CD062 /* Customer.swift in Sources */,
 				1C4581B526385A5600EA6A83 /* Bank.swift in Sources */,
 				1CDF8967263AECAE008CD062 /* HandleCustomerOperation.swift in Sources */,
