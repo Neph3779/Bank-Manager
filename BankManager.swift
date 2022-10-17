@@ -58,8 +58,6 @@ struct BankManager {
 
         repeat {
             consoleViewController.showStartMenu()
-            let input = consoleViewController.getUserInput()
-            result = consoleViewController.shouldContinue(input: input)
             if case let .failure(error) = result {
                 print(error)
                 shouldContinue = false
