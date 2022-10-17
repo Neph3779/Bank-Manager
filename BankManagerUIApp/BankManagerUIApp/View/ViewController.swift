@@ -43,18 +43,6 @@ class ViewController: UIViewController {
     
     private let bottomButtonsStackView = BankStackView(axis: .horizontal, distribution: .fillEqually)
     
-    private func setBottomButtonsStackView() {
-        view.addSubview(bottomButtonsStackView)
-        NSLayoutConstraint.activate([
-            bottomButtonsStackView.topAnchor.constraint(equalTo: outerStackView.bottomAnchor),
-            bottomButtonsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            bottomButtonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            bottomButtonsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ])
-        bottomButtonsStackView.addArrangedSubview(addCustomerButton)
-        bottomButtonsStackView.addArrangedSubview(resetButton)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTopTimerLabel()
@@ -135,5 +123,32 @@ class ViewController: UIViewController {
             waitingScrollStackView.bottomAnchor.constraint(equalTo: waitingScrollView.bottomAnchor)
         ])
     }
-}
 
+    private func setBottomButtonsStackView() {
+        view.addSubview(bottomButtonsStackView)
+        NSLayoutConstraint.activate([
+            bottomButtonsStackView.topAnchor.constraint(equalTo: outerStackView.bottomAnchor),
+            bottomButtonsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomButtonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomButtonsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+        bottomButtonsStackView.addArrangedSubview(addCustomerButton)
+        bottomButtonsStackView.addArrangedSubview(resetButton)
+    }
+
+    private func setAddCustomerButtonTarget() {
+        addCustomerButton.addTarget(self, action: #selector(addCustomerButtonTouched(_:)), for: .touchUpInside)
+    }
+
+    @objc private func addCustomerButtonTouched(_ sender: UIButton) {
+        
+    }
+
+    private func setResetButtonTarget() {
+        resetButton.addTarget(self, action: #selector(resetButtonTouched(_:)), for: .touchUpInside)
+    }
+
+    @objc private func resetButtonTouched(_ sender: UIButton) {
+
+    }
+}
