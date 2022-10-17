@@ -18,7 +18,7 @@ extension Customer {
         case normal
         case VIP
         case VVIP
-        
+
         var name: String {
             switch self {
             case .VVIP:
@@ -29,20 +29,12 @@ extension Customer {
                 return "일반"
             }
         }
-        
-        static var random: Priority {
-            if let randomPriority = Priority.allCases.randomElement() {
-                return randomPriority
-            } else {
-                return Priority.VIP
-            }
-        }
     }
-    
+
     enum Task: CaseIterable {
         case loan
         case deposit
-        
+
         var name: String {
             switch self {
             case .loan:
@@ -51,13 +43,6 @@ extension Customer {
                 return "예금"
             }
         }
-    
-        static var random: Task {
-            if let randomTask = Task.allCases.randomElement() {
-                return randomTask
-            } else {
-                return Task.loan
-            }
-        }
     }
 }
+

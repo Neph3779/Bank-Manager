@@ -13,14 +13,14 @@ struct BankManager {
     private let bankOperationQueue = OperationQueue()
     private var randomCustomers: [Customer]?
     private var totalCustomerNumber: Int = 0
-    
+
     init(bank: Bankable, consoleViewer: ConsoleViewController, randomGenerator: RandomGeneratable) {
         self.bank = bank
         self.consoleViewController = consoleViewer
         self.randomGenerator = randomGenerator
         bankOperationQueue.maxConcurrentOperationCount = bank.numberOfBankTeller
     }
-    
+
     mutating func start() {
         while shouldContinue() {
             createRandomCustomer()
@@ -33,29 +33,29 @@ struct BankManager {
             }
         }
     }
-    
+
     private mutating func createRandomCustomer() {
         randomCustomers = randomGenerator.generateRandomCustomer()
         totalCustomerNumber = randomGenerator.totalCustomer
     }
-    
+
     private mutating func handleCustomer() throws {
         guard var randomCustomers = randomCustomers else { throw BankManagerError.failToGenerateRandomCustomers }
-        
+
         randomCustomers.sort { $0.priority > $1.priority }
-        
+
         randomCustomers.forEach {
             let customerOperation = HandleCustomerOperation(customer: $0)
             bankOperationQueue.addOperation(customerOperation)
         }
-        
+
         bankOperationQueue.waitUntilAllOperationsAreFinished()
     }
-    
+
     private mutating func shouldContinue() -> Bool {
         var result: Result<Bool, BankManagerError> = .success(true)
         var shouldContinue = true
-        
+
         repeat {
             consoleViewController.showStartMenu()
             let input = consoleViewController.getUserInput()
@@ -69,7 +69,7 @@ struct BankManager {
                 shouldContinue = shouldContinueResult
             }
         } while result == .failure(.invalidUserInput)
-        
+
         return shouldContinue
     }
 }

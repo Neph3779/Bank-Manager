@@ -9,12 +9,12 @@ import Foundation
 
 class HandleCustomerOperation: Operation {
     let customer: Customer
-    
+
     init(customer: Customer) {
         self.customer = customer
         super.init()
     }
-    
+
     override func main() {
         switch customer.task {
         case .deposit:
@@ -23,13 +23,13 @@ class HandleCustomerOperation: Operation {
             handleLoan()
         }
     }
-    
+
     private func handleDeposit() {
         print("\(customer.ticketNumber)번 \(customer.priority.name)고객 예금업무 시작")
         usleep(Bank.Task.deposit.time)
         print("\(customer.ticketNumber)번 \(customer.priority.name)고객 예금업무 완료")
     }
-    
+
     private func handleLoan() {
         print("\(customer.ticketNumber)번 \(customer.priority.name)고객 대출업무 시작")
         usleep(Bank.Task.examineLoanDocument.time)
@@ -40,8 +40,8 @@ class HandleCustomerOperation: Operation {
 }
 
 struct BankHeadOffice {
-    static var semaphoreValue = 0 
-    
+    static var semaphoreValue = 0
+
     static func loanJudgement(customer: Customer) {
         while BankHeadOffice.semaphoreValue < 0 {} // wait until semaphoreValue is 0
         semaphoreValue -= 1
@@ -51,3 +51,4 @@ struct BankHeadOffice {
         semaphoreValue += 1
     }
 }
+
