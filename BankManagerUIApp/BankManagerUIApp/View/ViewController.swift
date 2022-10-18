@@ -7,6 +7,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    enum Section {
+        case judging
+        case working
+        case waiting
+    }
+    private var diffableDatasource: UICollectionViewDiffableDataSource<Section, Customer>!
     private let topTimerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +30,13 @@ class ViewController: UIViewController {
         return stackView
     }()
 
+    private lazy var bankerCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: compositionalLayout())
+        collectionView.register(BankerCollectionViewCell.self, forCellWithReuseIdentifier: BankerCollectionViewCell.reuseIdentifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+
     private let addCustomerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +44,7 @@ class ViewController: UIViewController {
         button.setTitleColor(.systemBlue, for: .normal)
         return button
     }()
+
     private let resetButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +60,23 @@ class ViewController: UIViewController {
         setTopTimerLabel()
         setBottomButtonsStackView()
         setLabelStackView()
+        setBankerCollectionView()
+        applyDataSource()
+    }
+
+    private func compositionalLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalWidth(1/3))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        let compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+
+        return compositionalLayout
     }
     
     private func setTopTimerLabel() {
@@ -77,6 +108,30 @@ class ViewController: UIViewController {
         ])
 
         [judgingLabel, workingOnLabel, waitngLabel].forEach { labelStackView.addArrangedSubview($0) }
+    }
+
+    private func setBankerCollectionView() {
+        diffableDatasource = UICollectionViewDiffableDataSource<Section, Customer>(
+            collectionView: bankerCollectionView) { collectionView, indexPath, customer in
+                guard let cell = collectionView
+                    .dequeueReusableCell(withReuseIdentifier: BankerCollectionViewCell.reuseIdentifier,
+                                         for: indexPath) as? BankerCollectionViewCell else { return UICollectionViewCell() }
+                return cell
+        }
+            view.addSubview(bankerCollectionView)
+            NSLayoutConstraint.activate([
+            bankerCollectionView.leadingAnchor.constraint(equalTo: labelStackView.trailingAnchor),
+            bankerCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            bankerCollectionView.bottomAnchor.constraint(equalTo: bottomButtonsStackView.topAnchor),
+            bankerCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+    }
+
+    private func applyDataSource() {
+        var snapShot = NSDiffableDataSourceSnapshot<Section, Customer>()
+        snapShot.appendSections([.judging, .working, .waiting])
+        snapShot.appendItems(RandomGenerator().generateRandomCustomer(count: 10), toSection: .waiting)
+        diffableDatasource.apply(snapShot)
     }
 
     private func setAddCustomerButtonTarget() {

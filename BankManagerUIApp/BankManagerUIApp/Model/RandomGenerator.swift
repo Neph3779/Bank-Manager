@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct RandomGenerator {
+class RandomGenerator {
     private(set) var totalCustomer: Int = 0
 
-    mutating func generateRandomCustomer(count: Int) -> [Customer] {
+   func generateRandomCustomer(count: Int) -> [Customer] {
         var customers = [Customer]()
 
         for customerNumber in 1...count {
