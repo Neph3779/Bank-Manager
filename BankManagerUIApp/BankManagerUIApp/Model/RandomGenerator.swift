@@ -7,19 +7,13 @@
 
 import Foundation
 
-protocol RandomGeneratable {
-    var totalCustomer: Int { get }
-    mutating func generateRandomCustomer() -> [Customer]
-}
-
-struct RandomGenerator: RandomGeneratable {
+struct RandomGenerator {
     private(set) var totalCustomer: Int = 0
 
-    mutating func generateRandomCustomer() -> [Customer] {
-        totalCustomer = createRandomNumberInRange(10, to: 30)
+    mutating func generateRandomCustomer(count: Int) -> [Customer] {
         var customers = [Customer]()
 
-        for customerNumber in 1...totalCustomer {
+        for customerNumber in 1...count {
             let ticketNumber = customerNumber
             let priority = Customer.Priority.allCases.randomElement()!
             let task = Customer.Task.allCases.randomElement()!

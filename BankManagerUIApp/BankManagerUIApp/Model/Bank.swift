@@ -7,16 +7,7 @@
 
 import Foundation
 
-protocol Bankable {
-    var numberOfBankTeller: Int { get }
-    var openTime: CFAbsoluteTime? { get }
-    var closeTime: CFAbsoluteTime? { get }
-
-    mutating func openBank()
-    mutating func closeBank(totalCustomerNumber: Int) throws
-}
-
-struct Bank: Bankable {
+struct Bank {
     private(set) var numberOfBankTeller: Int
     private(set) var openTime: CFAbsoluteTime?
     private(set) var closeTime: CFAbsoluteTime?

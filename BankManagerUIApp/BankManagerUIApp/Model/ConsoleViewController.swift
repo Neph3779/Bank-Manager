@@ -7,14 +7,7 @@
 
 import Foundation
 
-protocol ConsoleViewControllable {
-    var userInput: String { get }
-    mutating func getUserInput()
-    func showStartMenu()
-    func shouldContinue() -> Result<Bool, BankManagerError>
-}
-
-struct ConsoleViewController: ConsoleViewControllable {
+struct ConsoleViewController {
     private(set) var userInput = ""
     
     func showStartMenu() {

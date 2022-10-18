@@ -98,4 +98,13 @@ test 메서드의 네이밍에 관한 피드백이었다. "정상적으로되는
   - 처음에 이를 고려하지 않고 제작하여 트러블 슈팅이 많았음
 - 잘못된 네이밍의 test double들
   - test double의 용어 개념에 대해 이해하지 못한 상태에서 작성된 테스트 코드라 dummy, mock등의 단어가 혼용되어 남발되었다.
+- View와 Controller가 전혀 분리되어있지 않다
+  - 앞선 step들에서 consoleViewController를 먼저 제작하게 한 이유는 view, controller 분리를 먼저 하도록 유도하는 과정이었을 것 같은데 console상에 print하는건 어디서든 간단하게 할 수 있었기 때문에 print를 아무데나 남발을 했었고, 이는 의존성관계가 여러군데 걸리는 원인이 되었다.
 
+
+
+
+### 리팩토링 내역
+
+- Test Double관련 용어들에 대해 정리했고 불필요한 protocol들과 test들의 삭제, 알맞은 test double 용어로 교체하는 과정을 진행했다.
+- 

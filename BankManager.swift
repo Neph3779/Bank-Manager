@@ -7,14 +7,14 @@
 import Foundation
 
 struct BankManager {
-    private var bank: Bankable
+    private var bank: Bank
     private var consoleViewController: ConsoleViewController
-    private var randomGenerator: RandomGeneratable
+    private var randomGenerator: RandomGenerator
     private let bankOperationQueue = OperationQueue()
     private var randomCustomers: [Customer]?
     private var totalCustomerNumber: Int = 0
 
-    init(bank: Bankable, consoleViewer: ConsoleViewController, randomGenerator: RandomGeneratable) {
+    init(bank: Bank, consoleViewer: ConsoleViewController, randomGenerator: RandomGenerator) {
         self.bank = bank
         self.consoleViewController = consoleViewer
         self.randomGenerator = randomGenerator
@@ -35,7 +35,7 @@ struct BankManager {
     }
 
     private mutating func createRandomCustomer() {
-        randomCustomers = randomGenerator.generateRandomCustomer()
+        randomCustomers = randomGenerator.generateRandomCustomer(count: 10)
         totalCustomerNumber = randomGenerator.totalCustomer
     }
 
