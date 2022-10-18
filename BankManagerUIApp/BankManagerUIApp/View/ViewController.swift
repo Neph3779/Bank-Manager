@@ -29,14 +29,12 @@ class ViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
     private lazy var bankerCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: compositionalLayout())
         collectionView.register(BankerCollectionViewCell.self, forCellWithReuseIdentifier: BankerCollectionViewCell.reuseIdentifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-
     private let addCustomerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +42,6 @@ class ViewController: UIViewController {
         button.setTitleColor(.systemBlue, for: .normal)
         return button
     }()
-
     private let resetButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -52,8 +49,8 @@ class ViewController: UIViewController {
         button.setTitleColor(.systemRed, for: .normal)
         return button
     }()
-    
     private let bottomButtonsStackView = BankStackView(axis: .horizontal, distribution: .fillEqually)
+    private let viewModel = ViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +59,7 @@ class ViewController: UIViewController {
         setLabelStackView()
         setBankerCollectionView()
         applyDataSource()
+        setAddCustomerButtonTarget()
     }
 
     private func compositionalLayout() -> UICollectionViewLayout {
@@ -154,7 +152,9 @@ class ViewController: UIViewController {
     private func applyDataSource() {
         var snapShot = NSDiffableDataSourceSnapshot<Section, Customer>()
         snapShot.appendSections([.judging, .working, .waiting])
-        snapShot.appendItems(RandomGenerator().generateRandomCustomer(count: 10), toSection: .waiting)
+        snapShot.appendItems(viewModel.judging, toSection: .judging)
+        snapShot.appendItems(viewModel.working, toSection: .working)
+        snapShot.appendItems(viewModel.waiting, toSection: .waiting)
         diffableDatasource.apply(snapShot)
     }
 
@@ -163,7 +163,11 @@ class ViewController: UIViewController {
     }
 
     @objc private func addCustomerButtonTouched(_ sender: UIButton) {
-        
+        let randomCustomers = viewModel.randomGenerator.generateRandomCustomer(count: 10)
+        viewModel.waiting += randomCustomers
+        var snapShot = diffableDatasource.snapshot()
+        snapShot.appendItems(randomCustomers, toSection: .waiting)
+        diffableDatasource.apply(snapShot)
     }
 
     private func setResetButtonTarget() {

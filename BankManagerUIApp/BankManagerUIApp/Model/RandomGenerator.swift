@@ -13,8 +13,9 @@ class RandomGenerator {
    func generateRandomCustomer(count: Int) -> [Customer] {
         var customers = [Customer]()
 
-        for customerNumber in 1...count {
-            let ticketNumber = customerNumber
+        for _ in 1...count {
+            totalCustomer += 1
+            let ticketNumber = totalCustomer
             let priority = Customer.Priority.allCases.randomElement()!
             let task = Customer.Task.allCases.randomElement()!
             let randomCustomer  = Customer(ticketNumber: ticketNumber, priority: priority, task: task)
