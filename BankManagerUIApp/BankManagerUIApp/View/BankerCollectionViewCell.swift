@@ -14,6 +14,8 @@ final class BankerCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "test"
         label.textColor = .red
+        label.textAlignment = .center
+        label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -25,6 +27,11 @@ final class BankerCollectionViewCell: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+
+    func setContents(customer: Customer) {
+        label.text = "\(customer.ticketNumber) \n \(customer.priority.name) \n \(customer.task.name)"
+        label.textColor = customer.priority.labelColor
     }
 
     private func setLabel() {

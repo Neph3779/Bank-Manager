@@ -65,18 +65,41 @@ class ViewController: UIViewController {
     }
 
     private func compositionalLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
+                                                            layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
+                                                  heightDimension: .fractionalHeight(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalWidth(1/3))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                   heightDimension: .absolute(self.bankerCollectionView.frame.height / 3))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
 
-        let section = NSCollectionLayoutSection(group: group)
-        let compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .continuous
+            section.interGroupSpacing = 20
+            return section
+        }
+        return layout
 
-        return compositionalLayout
+        // NOTE: 아래의 코드로는 동작하지 않음 (이유 아직 모름)
+        /*
+         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
+                                               heightDimension: .fractionalHeight(1))
+         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                heightDimension: .absolute(self.bankerCollectionView.frame.height / 3))
+         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
+
+         let section = NSCollectionLayoutSection(group: group)
+         section.orthogonalScrollingBehavior = .continuous
+         section.interGroupSpacing = 20
+
+         let compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+
+         return compositionalLayout
+         */
     }
     
     private func setTopTimerLabel() {
@@ -116,6 +139,7 @@ class ViewController: UIViewController {
                 guard let cell = collectionView
                     .dequeueReusableCell(withReuseIdentifier: BankerCollectionViewCell.reuseIdentifier,
                                          for: indexPath) as? BankerCollectionViewCell else { return UICollectionViewCell() }
+                cell.setContents(customer: customer)
                 return cell
         }
             view.addSubview(bankerCollectionView)

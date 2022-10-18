@@ -5,7 +5,7 @@
 //  Created by 천수현 on 2021/04/29.
 //
 
-import Foundation
+import UIKit
 
 struct Customer: Hashable {
     let ticketNumber: Int
@@ -27,6 +27,17 @@ extension Customer {
                 return "VIP"
             case .normal:
                 return "일반"
+            }
+        }
+
+        var labelColor: UIColor {
+            switch self {
+            case .normal:
+                return .black
+            case .VIP:
+                return .blue
+            case .VVIP:
+                return .red
             }
         }
     }
