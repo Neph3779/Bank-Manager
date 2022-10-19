@@ -8,6 +8,7 @@
 import Foundation
 
 struct Bank {
+    let numberOfBankTeller: Int
 }
 
 extension Bank {

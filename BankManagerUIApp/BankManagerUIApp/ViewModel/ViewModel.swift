@@ -14,4 +14,9 @@ final class ViewModel {
 
     var randomGenerator = RandomGenerator()
     let bankOperationQueue = OperationQueue()
+    let bank = Bank(numberOfBankTeller: 3)
+
+    init() {
+        bankOperationQueue.maxConcurrentOperationCount = bank.numberOfBankTeller
+    }
 }
