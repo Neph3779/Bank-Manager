@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C4581B226385A5400EA6A83 /* BankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D65D1A259C8190005510E0 /* BankManager.swift */; };
 		1C4581B526385A5600EA6A83 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BFF58263830AC00CE9F75 /* Bank.swift */; };
 		1C4581BB26385A5A00EA6A83 /* ConsoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BFF61263830D000CE9F75 /* ConsoleViewController.swift */; };
 		1C4581BE26385A5C00EA6A83 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7694E79259C3EC00053667F /* main.swift */; };
@@ -24,8 +23,8 @@
 		1CDF8961263AECAB008CD062 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4581D5263A7B5B00EA6A83 /* Customer.swift */; };
 		1CDF8964263AECAC008CD062 /* RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDF8959263AD05B008CD062 /* RandomGenerator.swift */; };
 		1CDF8967263AECAE008CD062 /* HandleCustomerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDF895D263AD06F008CD062 /* HandleCustomerOperation.swift */; };
+		3258E2AD28FFD45400FC563E /* BankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258E2AC28FFD45400FC563E /* BankManager.swift */; };
 		C7694E7A259C3EC00053667F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7694E79259C3EC00053667F /* main.swift */; };
-		C7D65D1B259C8190005510E0 /* BankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D65D1A259C8190005510E0 /* BankManager.swift */; };
 		CF2CF53BA9B76AA5837606B0 /* Pods_BankManagerConsoleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27574928C2F5BBF11D2B27CC /* Pods_BankManagerConsoleApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,10 +54,10 @@
 		1CDF8959263AD05B008CD062 /* RandomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
 		1CDF895D263AD06F008CD062 /* HandleCustomerOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleCustomerOperation.swift; sourceTree = "<group>"; };
 		27574928C2F5BBF11D2B27CC /* Pods_BankManagerConsoleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BankManagerConsoleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3258E2AC28FFD45400FC563E /* BankManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankManager.swift; sourceTree = "<group>"; };
 		A97936BAC56A3E03C87DE9B7 /* Pods-BankManagerConsoleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankManagerConsoleApp.debug.xcconfig"; path = "Target Support Files/Pods-BankManagerConsoleApp/Pods-BankManagerConsoleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C7694E76259C3EC00053667F /* BankManagerConsoleApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BankManagerConsoleApp; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7694E79259C3EC00053667F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		C7D65D1A259C8190005510E0 /* BankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankManager.swift; path = ../../BankManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				1CB01E68263E4D3E003FEF29 /* Errors.swift */,
-				C7D65D1A259C8190005510E0 /* BankManager.swift */,
 				1C6BFF58263830AC00CE9F75 /* Bank.swift */,
+				3258E2AC28FFD45400FC563E /* BankManager.swift */,
 				1C6BFF61263830D000CE9F75 /* ConsoleViewController.swift */,
 				1C4581D5263A7B5B00EA6A83 /* Customer.swift */,
 				1CDF8959263AD05B008CD062 /* RandomGenerator.swift */,
@@ -284,7 +283,6 @@
 				1CDF8964263AECAC008CD062 /* RandomGenerator.swift in Sources */,
 				1CB01E942640D709003FEF29 /* BankTest.swift in Sources */,
 				1CB01E9A264119B1003FEF29 /* ConsoleViewControllerTest.swift in Sources */,
-				1C4581B226385A5400EA6A83 /* BankManager.swift in Sources */,
 				1C4581BB26385A5A00EA6A83 /* ConsoleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,11 +294,11 @@
 				1C6BFF62263830D000CE9F75 /* ConsoleViewController.swift in Sources */,
 				1C6BFF59263830AC00CE9F75 /* Bank.swift in Sources */,
 				1CDF895A263AD05B008CD062 /* RandomGenerator.swift in Sources */,
+				3258E2AD28FFD45400FC563E /* BankManager.swift in Sources */,
 				1CDF895E263AD06F008CD062 /* HandleCustomerOperation.swift in Sources */,
 				1CB01E69263E4D3E003FEF29 /* Errors.swift in Sources */,
 				C7694E7A259C3EC00053667F /* main.swift in Sources */,
 				1C4581D6263A7B5B00EA6A83 /* Customer.swift in Sources */,
-				C7D65D1B259C8190005510E0 /* BankManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
