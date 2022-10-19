@@ -11,6 +11,7 @@ struct Customer: Hashable {
     let ticketNumber: Int
     let priority: Priority
     let task: Task
+    var isJudging = false
 }
 
 extension Customer {

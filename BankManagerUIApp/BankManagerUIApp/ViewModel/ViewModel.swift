@@ -13,4 +13,5 @@ final class ViewModel {
     var judging = [Customer]()
 
     var randomGenerator = RandomGenerator()
+    let bankOperationQueue = OperationQueue()
 }

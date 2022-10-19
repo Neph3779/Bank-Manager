@@ -60,6 +60,7 @@ class ViewController: UIViewController {
         setBankerCollectionView()
         applyDataSource()
         setAddCustomerButtonTarget()
+        setResetButtonTarget()
     }
 
     private func compositionalLayout() -> UICollectionViewLayout {
@@ -168,6 +169,11 @@ class ViewController: UIViewController {
         var snapShot = diffableDatasource.snapshot()
         snapShot.appendItems(randomCustomers, toSection: .waiting)
         diffableDatasource.apply(snapShot)
+
+        viewModel.waiting.forEach {
+            let customerOperation = HandleCustomerOperation(customer: $0, delegate: self)
+            viewModel.bankOperationQueue.addOperation(customerOperation)
+        }
     }
 
     private func setResetButtonTarget() {
@@ -175,6 +181,69 @@ class ViewController: UIViewController {
     }
 
     @objc private func resetButtonTouched(_ sender: UIButton) {
+        viewModel.waiting.removeAll()
+        viewModel.working.removeAll()
+        viewModel.judging.removeAll()
+        applyDataSource()
+    }
+}
 
+extension ViewController: ViewControllerDelegate {
+    func depositStarted(customer: Customer) {
+        DispatchQueue.main.async {
+            if let index = self.viewModel.waiting.firstIndex(of: customer) {
+                self.viewModel.waiting.remove(at: index)
+                self.viewModel.working.append(customer)
+                self.applyDataSource()
+            }
+        }
+    }
+
+    func depositEnded(customer: Customer) {
+        DispatchQueue.main.async {
+            if let index = self.viewModel.working.firstIndex(of: customer) {
+                self.viewModel.working.remove(at: index)
+                self.applyDataSource()
+            }
+        }
+    }
+
+    func loanStarted(customer: Customer) {
+        DispatchQueue.main.async {
+            if let index = self.viewModel.waiting.firstIndex(of: customer) {
+                self.viewModel.waiting.remove(at: index)
+                self.viewModel.working.append(customer)
+                self.applyDataSource()
+            }
+        }
+    }
+
+    func loanEnded(customer: Customer) {
+        DispatchQueue.main.async {
+            if let index = self.viewModel.working.firstIndex(of: customer) {
+                self.viewModel.working.remove(at: index)
+                self.applyDataSource()
+            }
+        }
+    }
+
+    func loanJudgeStarted(customer: Customer) {
+        var judgingCustomer = customer
+        judgingCustomer.isJudging = true
+        DispatchQueue.main.async {
+            self.viewModel.judging.append(judgingCustomer)
+            self.applyDataSource()
+        }
+    }
+
+    func loanJudgeEnded(customer: Customer) {
+        var judgeEndCustomer = customer
+        judgeEndCustomer.isJudging = true
+        DispatchQueue.main.async {
+            if let index = self.viewModel.judging.firstIndex(of: judgeEndCustomer) {
+                self.viewModel.judging.remove(at: index)
+                self.applyDataSource()
+            }
+        }
     }
 }

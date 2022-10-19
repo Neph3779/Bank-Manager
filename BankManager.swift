@@ -44,10 +44,10 @@ struct BankManager {
 
         randomCustomers.sort { $0.priority > $1.priority }
 
-        randomCustomers.forEach {
-            let customerOperation = HandleCustomerOperation(customer: $0)
-            bankOperationQueue.addOperation(customerOperation)
-        }
+//        randomCustomers.forEach {
+//            let customerOperation = HandleCustomerOperation(customer: $0)
+//            bankOperationQueue.addOperation(customerOperation)
+//        }
 
         bankOperationQueue.waitUntilAllOperationsAreFinished()
     }
