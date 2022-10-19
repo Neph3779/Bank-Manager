@@ -11,6 +11,17 @@ class ViewController: UIViewController {
         case judging
         case working
         case waiting
+
+        var name: String {
+            switch self {
+            case .judging:
+                return "심사중"
+            case .working:
+                return "업무중"
+            case .waiting:
+                return "대기중"
+            }
+        }
     }
     private var diffableDatasource: UICollectionViewDiffableDataSource<Section, Customer>!
     private let topTimerLabel: UILabel = {
@@ -19,9 +30,9 @@ class ViewController: UIViewController {
         label.text = "업무시간"
         return label
     }()
-    private let judgingLabel = ColorLabel(backgroundColor: .orange, text: "심사중")
-    private let workingOnLabel = ColorLabel(backgroundColor: .systemGreen, text: "업무중")
-    private let waitngLabel = ColorLabel(backgroundColor: .systemBlue, text: "대기중")
+    private let judgingLabel = ColorLabel(backgroundColor: .orange, text: Section.judging.name)
+    private let workingOnLabel = ColorLabel(backgroundColor: .systemGreen, text: Section.working.name)
+    private let waitngLabel = ColorLabel(backgroundColor: .systemBlue, text: Section.waiting.name)
     private let labelStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
