@@ -104,7 +104,14 @@ test 메서드의 네이밍에 관한 피드백이었다. "정상적으로되는
 
 
 
-### 리팩토링 내역
+### 리팩토링 + 추가 구현내역
 
-- Test Double관련 용어들에 대해 정리했고 불필요한 protocol들과 test들의 삭제, 알맞은 test double 용어로 교체하는 과정을 진행했다.
-- 
+- Console앱에 구현된 Test를 리팩토링하여 불필요한 protocol, test들의 삭제, 알맞은 test double 용어로 교체하는 과정 등을 진행했다.
+- print문이 남용되어 view와 controller부분이 전혀 분리되지 않았던 문제를 UI app 구현시에는 delegate 패턴, escaping 클로저의 인자전달 등의 방법으로 해결했다.
+- Compositional layout과 diffable datasource를 활용해 UI적으로도 은행원의 업무가 보일 수 있도록 앱을 완성시켰다.
+
+
+
+### UI앱 작동화면
+
+<img src="https://raw.githubusercontent.com/Neph3779/Blog-Image/forUpload/img/20221019160629.gif" alt="BankManager" style="zoom:50%;" />
